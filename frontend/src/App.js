@@ -14,6 +14,7 @@ import AccessoriesDetailPage from './pages/Accessories/AccessoryDetailPage.jsx'
 import AccountInfoPage from './pages/User/AccountInfoPage.jsx'
 import PromotionPage from './pages/Promotions/PromotionPage.jsx'
 import EventPage from './pages/Events/EventPage.jsx'
+import AccountSettingsPage from './pages/User/AccountSettingsPage.jsx'
 
 import CreateMotorcycle from './pages/Motorcycles/MotorcycleCreatePage.jsx'
 import CreateAccessory from './pages/Accessories/AccessoryCreatePage.jsx'
@@ -28,7 +29,7 @@ function App() {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path='/' element={<HomePage />} />
-        <Route path='/dang-nhap' element={isLoggedIn ? <Navigate to="/" /> : <LoginPage />} />
+        <Route path='/dang-nhap' element={<LoginPage />} />
         <Route path='/dang-ky' element={isLoggedIn ? <Navigate to="/" /> : <RegisterPage />} />
         <Route path='/xe-may' element={<MotorcycleListPage />} />
         <Route path='/phu-kien' element={<AccessoryListPage />} />
@@ -38,7 +39,8 @@ function App() {
         <Route path='/xe-may/:slug' element={<MotorcycleDetailPage />} />
         <Route path='/phu-tung/:slug' element={<SparePartDetailPage />} />
         <Route path='/phu-kien/:slug' element={<AccessoriesDetailPage />} />
-        <Route path='/account/profile' element={<AccountInfoPage />} />
+        <Route path='/account/profile' element={!isLoggedIn ? <Navigate to="/" /> : <AccountInfoPage />} />
+        <Route path='/account/settings' element={!isLoggedIn ? <Navigate to="/" /> : <AccountSettingsPage />} />
       </Route>
 
       <Route path='/xe-may/create' element={<CreateMotorcycle />} />

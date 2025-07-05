@@ -2,6 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bg_register from '../../assets/images/banners/login_register/bg_login.png'
 import axios from 'axios';
+import {
+    isValidEmail,
+    isValidPassword,
+    isValidPhoneNumber,
+    doPasswordsMatch
+} from '../../utils/validators.js';
 
 function Register() {
 
@@ -15,10 +21,6 @@ function Register() {
     const [phoneNumber, setPhoneNumber] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const passwordRegex = /^[A-Za-z0-9]{8,}$/;
-    const phoneRegex = /^\d{10}$/;
 
     const ShowPassword = () => {
         const handleHidePassword = () => {
@@ -59,16 +61,19 @@ function Register() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
+        if (!doPasswordsMatch(password, confirmPassword)) {
             alert("Mật khẩu không khớp!");
             return;
-        } else if (!emailRegex.test(email)) {
+        }
+        if (!isValidEmail(email)) {
             alert("Email không hợp lệ!");
             return;
-        } else if (!passwordRegex.test(password)) {
+        }
+        if (!isValidPassword(password)) {
             alert("Mật khẩu không hợp lệ!");
             return;
-        } else if (!phoneRegex.test(phoneNumber)) {
+        }
+        if (!isValidPhoneNumber(phoneNumber)) {
             alert("Số điện thoại không hợp lệ!");
             return;
         }

@@ -1,16 +1,16 @@
 import React from 'react'
-import AccountInfo from '../../components/User/AccountInfo.jsx'
+import AccountSettings from '../../components/User/AccountSettings.jsx'
 import AccountSidebar from '../../components/User/AccountSidebar.jsx'
 
-function AccountInfoPage() {
+function AccountSettingsPage() {
   return (
     <>
       < div className="flex min-h-screen bg-white text-gray-800 mt-16 font-vietnam" >
         <AccountSidebar />
-        <AccountInfo />
+        <AccountSettings />
       </div>
     </>
   )
 }
 
-export default AccountInfoPage
+export default AccountSettingsPage

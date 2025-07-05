@@ -8,7 +8,7 @@ function Login() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false)
     const [type, setType] = useState('password')
-    const [input, setInput] = useState('')
+    const [input, setInput] = useState('') // username - email
     const [password, setPassword] = useState('')
 
     const ShowPassword = () => {

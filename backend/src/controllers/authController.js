@@ -13,7 +13,15 @@ class AuthController {
         }
     };
 
-
+    // [POST] /sigout
+    signout(req, res, next) {
+        res.clearCookie('jwt', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV !== 'development',
+            sameSite: 'Lax',
+        });
+        res.status(200).json({ message: 'Đăng xuất thành công' });
+    }
 
     // [POST] /dang-ky
     async create(req, res, next) {

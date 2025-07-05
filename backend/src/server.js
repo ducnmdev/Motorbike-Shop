@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-const morgan = require('morgan');
+// const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const route = require('./routes');
@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(express.json()); // middleware xử lý body là json
 
 // HTTP logger
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 // Routes init
 route(app);
