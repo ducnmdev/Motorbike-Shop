@@ -15,6 +15,7 @@ import AccountInfoPage from './pages/User/AccountInfoPage.jsx'
 import PromotionPage from './pages/Promotions/PromotionPage.jsx'
 import EventPage from './pages/Events/EventPage.jsx'
 import AccountSettingsPage from './pages/User/AccountSettingsPage.jsx'
+import MotorcycleOrderListPage from './pages/User/MotorcycleOrderListPage.jsx'
 
 import CreateMotorcycle from './pages/Motorcycles/MotorcycleCreatePage.jsx'
 import CreateAccessory from './pages/Accessories/AccessoryCreatePage.jsx'
@@ -41,6 +42,7 @@ function App() {
         <Route path='/phu-kien/:slug' element={<AccessoriesDetailPage />} />
         <Route path='/account/profile' element={!isLoggedIn ? <Navigate to="/" /> : <AccountInfoPage />} />
         <Route path='/account/settings' element={!isLoggedIn ? <Navigate to="/" /> : <AccountSettingsPage />} />
+        <Route path='/account/orders/motorcycle' element={!isLoggedIn ? <Navigate to="/" /> : <MotorcycleOrderListPage />} />
       </Route>
 
       <Route path='/xe-may/create' element={<CreateMotorcycle />} />

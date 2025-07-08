@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 
-    productId: { type: mongoose.Schema.Types.ObjectId, required: true },
+    productId: { type: String, required: true },
     productType: {
         type: String,
         enum: ['Accessory-Sparepart', 'Motorcycle'],

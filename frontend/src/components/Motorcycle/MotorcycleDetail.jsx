@@ -47,7 +47,7 @@ function MotorcycleDetail() {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/xe-may/${slug}`);
                 setMotorcycle(response.data);
-                return response.data;
+                // return response.data;
             } catch (error) {
                 console.error("Error fetching motorcycles:", error);
                 throw error;
@@ -63,6 +63,12 @@ function MotorcycleDetail() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    // useEffect(() => {
+    //     const handleAddOrder = () => {
+
+    //     }
+    // }, [])
 
     return (
 

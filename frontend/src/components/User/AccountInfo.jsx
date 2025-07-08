@@ -105,7 +105,7 @@ const AccountInfo = () => {
                 {/* Buttons */}
                 <div className="flex justify-end gap-3 pt-4">
                     {/* <button className="px-4 py-2 bg-black text-white rounded">Hủy bỏ</button> */}
-                    <button onClick={handleUpdate} className="px-4 py-2 bg-red-500 text-white rounded">Cập nhật</button>
+                    <button onClick={handleUpdate} className="px-4 py-2 bg-[#de0000] text-white rounded-sm">Cập nhật</button>
                 </div>
             </div>
         </main >
