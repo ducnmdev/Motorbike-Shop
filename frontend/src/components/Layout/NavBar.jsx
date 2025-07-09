@@ -119,19 +119,25 @@ function NavBar() {
                             {showDropdown && (
                                 <div className='absolute right-0 top-full mt-2 w-44 bg-white shadow-lg rounded-md border z-[1000]'>
                                     <Link to='/account/profile'
-                                        className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline text-center'>
+                                        onClick={() => setShowDropdown(false)}
+                                        className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline'>
                                         Tài khoản
                                     </Link>
                                     <Link to='/account/orders/motorcycle'
-                                        className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline text-center'>
+                                        onClick={() => setShowDropdown(false)}
+                                        className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline'>
                                         Đơn hàng
                                     </Link>
                                     <Link to='/account/settings'
-                                        className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline text-center'>
+                                        onClick={() => setShowDropdown(false)}
+                                        className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline'>
                                         Cài đặt
                                     </Link>
-                                    <button onClick={handleSignout}
-                                        className='w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 font-vietnam text-center'>
+                                    <button onClick={() => {
+                                        setShowDropdown(false)
+                                        handleSignout()
+                                    }}
+                                        className='w-full px-4 py-2 text-sm text-red-600 hover:bg-gray-100 font-vietnam text-left'>
                                         Đăng xuất
                                     </button>
                                 </div>
@@ -147,7 +153,7 @@ function NavBar() {
 
 
             </nav>
-        </header>
+        </header >
     )
 }
 

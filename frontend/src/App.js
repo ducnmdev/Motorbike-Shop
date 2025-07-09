@@ -21,7 +21,7 @@ import CreateMotorcycle from './pages/Motorcycles/MotorcycleCreatePage.jsx'
 import CreateAccessory from './pages/Accessories/AccessoryCreatePage.jsx'
 import CreateSparepart from './pages/SpareParts/SparePartCreatePage.jsx'
 
-import { AuthContext } from './context/AuthContext.jsx'
+import { AuthContext } from './contexts/AuthContext.jsx'
 import { Navigate } from 'react-router-dom';
 
 function App() {

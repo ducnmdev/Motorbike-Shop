@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
+import { useContext } from 'react';
+import { OrderContext } from '../../contexts/OrderContext';
 import axios from 'axios'
 
 
@@ -15,10 +17,20 @@ function MotorcycleDetail() {
     const [showTSKT, setShowTSKT] = useState(false)
     const [displayStyle, setDisplayStyle] = useState('none')
 
+    const { setOrder } = useContext(OrderContext);
+
     const handleChangeInfo = (index, msIndex) => {
         setGia(motorcycle.phienBan[index].mauSac[msIndex].gia.toLocaleString('vi-VN'))
-        setImgXe(`http://localhost:5000/uploads/${motorcycle.phienBan[index].mauSac[msIndex].imgXe}`)
+        setImgXe(motorcycle.phienBan[index].mauSac[msIndex].imgXe)
         setSoLuong(motorcycle.phienBan[index].mauSac[msIndex].soLuong)
+
+        setOrder(prev => ({
+            ...prev,
+            imgXe: `http://localhost:5000/uploads/${motorcycle.phienBan[index].mauSac[msIndex].imgXe}`,
+            tongTien: motorcycle.phienBan[index].mauSac[msIndex].gia,
+            phienBan: motorcycle.phienBan[index].tenPhienBan,
+            mauSac: motorcycle.phienBan[index].mauSac[msIndex].tenMau
+        }));
     }
 
     useEffect(() => {
@@ -47,6 +59,17 @@ function MotorcycleDetail() {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/xe-may/${slug}`);
                 setMotorcycle(response.data);
+                setOrder(prev => ({
+                    ...prev,
+                    productId: response.data._id,
+                    tenSanPham: response.data.tenXe,
+                    phienBan: response.data.phienBan[0].tenPhienBan,
+                    mauSac: response.data.phienBan[0].mauSac[0].tenMau,
+                    soLuong: 1,
+                    imgXe: response.data.phienBan[0].mauSac[0].imgXe,
+                    tongTien: response.data.phienBan[0].mauSac[0].gia,
+                }));
+                // console.log(response.data)
                 // return response.data;
             } catch (error) {
                 console.error("Error fetching motorcycles:", error);
@@ -55,20 +78,12 @@ function MotorcycleDetail() {
         };
 
         fetchMotorcycle()
-            .then(data => {
-                console.log("Motorcycles data:", data);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // useEffect(() => {
-    //     const handleAddOrder = () => {
+    // const handleAddOrder = () => {
 
-    //     }
-    // }, [])
+    // }
 
     return (
 
@@ -219,7 +234,9 @@ function MotorcycleDetail() {
                                 </span>
                             </div>
                             <button className={`bg-[#de0000] mt-5 w-[330px] rounded-sm ${(soLuong || motorcycle.phienBan[0].mauSac[0].soLuong) === 0 ? 'bg-[#ffcccc]' : ''}`}
-                                disabled={(soLuong || motorcycle.phienBan[0].mauSac[0].soLuong) === 0}>
+                                disabled={(soLuong || motorcycle.phienBan[0].mauSac[0].soLuong) === 0}
+                            // onClick={handleAddOrder}
+                            >
                                 <div className='font-vietnam text-white font-semibold p-[12px]'>
                                     Đặt hàng
                                 </div>

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const OrderSchema = new Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
 
-    productId: { type: String, required: true },
+    productId: { type: mongoose.Schema.Types.ObjectId, required: true },
     productType: {
         type: String,
         enum: ['Accessory-Sparepart', 'Motorcycle'],
@@ -14,7 +14,7 @@ const OrderSchema = new Schema({
     phienBan: { type: String, required: true },
     mauSac: { type: String, required: true },
     soLuong: { type: Number, default: 1 },
-    gia: { type: Number, required: true },
+    // gia: { type: Number, required: true },
     imgXe: { type: String },
 
     tongTien: { type: Number, required: true },
