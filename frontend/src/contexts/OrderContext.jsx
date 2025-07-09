@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 
 export const OrderContext = createContext();
 
@@ -23,8 +23,20 @@ export const OrderProvider = ({ children }) => {
             daThanhToan: false
         },
         trangThai: "cho-xu-ly",
-        diaChiGiaoHang: ""
     });
+
+    // Lấy dữ liệu từ localStorage nếu có
+    useEffect(() => {
+        const savedOrder = localStorage.getItem('order');
+        if (savedOrder) {
+            setOrder(JSON.parse(savedOrder));
+        }
+    }, []);
+
+    // Cập nhật localStorage mỗi khi order thay đổi
+    useEffect(() => {
+        localStorage.setItem('order', JSON.stringify(order));
+    }, [order]);
 
     return (
         <OrderContext.Provider value={{ order, setOrder }}>

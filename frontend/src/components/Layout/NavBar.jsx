@@ -64,7 +64,7 @@ function NavBar() {
 
     return (
         <header>
-            <nav className='fixed left-0 top-0 z-[50] flex h-[72px] w-full items-center justify-between border-b border-neutral-200 bg-white px-8 text-neutral-800 shadow'>
+            <nav className='fixed left-0 top-0 z-[1000002] flex h-[72px] w-full items-center justify-between border-b border-neutral-200 bg-white px-8 text-neutral-800 shadow'>
                 <Link className='flex items-center no-underline text-black transform -skew-x-[13deg]' to='/'>
                     <div className='font-vietnam font-black text-[40px] bg-[#de0000] text-white px-3 mr-2'>
                         {/* <img src={logo} alt='logo' /> */}
@@ -106,9 +106,9 @@ function NavBar() {
                     </ul>
                 </section>
 
-                <section className='flex h-full items-center relative'>
+                <section className='flex h-full items-center relative z-[100001]'>
                     {user ? (
-                        <div className='relative' ref={dropdownRef}>
+                        <div className='relative z-[100001]' ref={dropdownRef}>
                             <button
                                 onClick={() => setShowDropdown(!showDropdown)}
                                 className='font-vietnam font-bold text-lg no-underline w-max rounded-sm bg-[#de0000] px-3 py-2 text-white'
@@ -117,7 +117,7 @@ function NavBar() {
                             </button>
 
                             {showDropdown && (
-                                <div className='absolute right-0 top-full mt-2 w-44 bg-white shadow-lg rounded-md border z-[1000]'>
+                                <div className='absolute right-0 top-full mt-2 w-44 bg-white shadow-lg rounded-md border z-[100000]'>
                                     <Link to='/account/profile'
                                         onClick={() => setShowDropdown(false)}
                                         className='block px-4 py-2 text-sm hover:bg-gray-100 font-vietnam text-black no-underline'>

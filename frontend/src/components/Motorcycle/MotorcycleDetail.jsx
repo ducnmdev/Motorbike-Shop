@@ -1,13 +1,13 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react'
+import { useParams, useNavigate } from 'react-router-dom';
 import { OrderContext } from '../../contexts/OrderContext';
 import axios from 'axios'
 
 
 function MotorcycleDetail() {
 
+    const navigate = useNavigate();
     const { slug } = useParams();
     const [motorcycle, setMotorcycle] = useState(null)
     const [color, setColor] = useState(1)
@@ -21,7 +21,7 @@ function MotorcycleDetail() {
 
     const handleChangeInfo = (index, msIndex) => {
         setGia(motorcycle.phienBan[index].mauSac[msIndex].gia.toLocaleString('vi-VN'))
-        setImgXe(motorcycle.phienBan[index].mauSac[msIndex].imgXe)
+        setImgXe(`http://localhost:5000/uploads/${motorcycle.phienBan[index].mauSac[msIndex].imgXe}`)
         setSoLuong(motorcycle.phienBan[index].mauSac[msIndex].soLuong)
 
         setOrder(prev => ({
@@ -32,6 +32,33 @@ function MotorcycleDetail() {
             mauSac: motorcycle.phienBan[index].mauSac[msIndex].tenMau
         }));
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response =
+                    await axios.get('http://localhost:5000/api/v1/user/account/profile', {
+                        withCredentials: true // bắt buộc
+                    });
+                // console.log(response.data.user)
+                setOrder(prev => ({
+                    ...prev,
+                    userId: response.data.user._id,
+                    thongTinNguoiMua: {
+                        hoTen: response.data.user.fullName,
+                        soDienThoai: response.data.user.phoneNumber,
+                        diaChi: response.data.user.address
+                    }
+                }))
+            } catch (error) {
+                console.error('Error create User data', error);
+            }
+        }
+
+        fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
 
     useEffect(() => {
         if (showTSKT) {
@@ -66,7 +93,7 @@ function MotorcycleDetail() {
                     phienBan: response.data.phienBan[0].tenPhienBan,
                     mauSac: response.data.phienBan[0].mauSac[0].tenMau,
                     soLuong: 1,
-                    imgXe: response.data.phienBan[0].mauSac[0].imgXe,
+                    imgXe: `http://localhost:5000/uploads/${response.data.phienBan[0].mauSac[0].imgXe}`,
                     tongTien: response.data.phienBan[0].mauSac[0].gia,
                 }));
                 // console.log(response.data)
@@ -81,9 +108,9 @@ function MotorcycleDetail() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // const handleAddOrder = () => {
-
-    // }
+    const handleAddOrder = () => {
+        navigate('/dat-hang')
+    }
 
     return (
 
@@ -237,7 +264,7 @@ function MotorcycleDetail() {
                                 disabled={(soLuong || motorcycle.phienBan[0].mauSac[0].soLuong) === 0}
                             // onClick={handleAddOrder}
                             >
-                                <div className='font-vietnam text-white font-semibold p-[12px]'>
+                                <div onClick={handleAddOrder} className='font-vietnam text-white font-semibold p-[12px]'>
                                     Đặt hàng
                                 </div>
                             </button>
