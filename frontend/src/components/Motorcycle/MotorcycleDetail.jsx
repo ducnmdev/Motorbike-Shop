@@ -2,10 +2,13 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { OrderContext } from '../../contexts/OrderContext';
+import { AuthContext } from '../../contexts/AuthContext.jsx'
 import axios from 'axios'
 
 
 function MotorcycleDetail() {
+
+    const { isLoggedIn } = useContext(AuthContext)
 
     const navigate = useNavigate();
     const { slug } = useParams();
@@ -26,7 +29,7 @@ function MotorcycleDetail() {
 
         setOrder(prev => ({
             ...prev,
-            imgXe: `http://localhost:5000/uploads/${motorcycle.phienBan[index].mauSac[msIndex].imgXe}`,
+            imgXe: motorcycle.phienBan[index].mauSac[msIndex].imgXe,
             tongTien: motorcycle.phienBan[index].mauSac[msIndex].gia,
             phienBan: motorcycle.phienBan[index].tenPhienBan,
             mauSac: motorcycle.phienBan[index].mauSac[msIndex].tenMau
@@ -40,7 +43,6 @@ function MotorcycleDetail() {
                     await axios.get('http://localhost:5000/api/v1/user/account/profile', {
                         withCredentials: true // bắt buộc
                     });
-                // console.log(response.data.user)
                 setOrder(prev => ({
                     ...prev,
                     userId: response.data.user._id,
@@ -51,13 +53,15 @@ function MotorcycleDetail() {
                     }
                 }))
             } catch (error) {
-                console.error('Error create User data', error);
+                // console.error('Error create User data', error);
             }
         }
+        if (isLoggedIn) {
+            fetchData();
+        }
 
-        fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [isLoggedIn])
 
 
     useEffect(() => {
@@ -93,7 +97,7 @@ function MotorcycleDetail() {
                     phienBan: response.data.phienBan[0].tenPhienBan,
                     mauSac: response.data.phienBan[0].mauSac[0].tenMau,
                     soLuong: 1,
-                    imgXe: `http://localhost:5000/uploads/${response.data.phienBan[0].mauSac[0].imgXe}`,
+                    imgXe: response.data.phienBan[0].mauSac[0].imgXe,
                     tongTien: response.data.phienBan[0].mauSac[0].gia,
                 }));
                 // console.log(response.data)
@@ -109,7 +113,11 @@ function MotorcycleDetail() {
     }, [])
 
     const handleAddOrder = () => {
-        navigate('/dat-hang')
+        if (!isLoggedIn) {
+            navigate('/dang-nhap')
+        } else {
+            navigate('/dat-hang')
+        }
     }
 
     return (

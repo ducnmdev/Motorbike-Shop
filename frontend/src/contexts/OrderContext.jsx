@@ -19,10 +19,10 @@ export const OrderProvider = ({ children }) => {
             diaChi: ""
         },
         thanhToan: {
-            hinhThuc: "cod",
+            hinhThuc: "COD",
             daThanhToan: false
         },
-        trangThai: "cho-xu-ly",
+        trangThai: "",
     });
 
     // Lấy dữ liệu từ localStorage nếu có

@@ -6,7 +6,6 @@ import axios from 'axios';
 function CheckoutPage() {
     const { order, setOrder } = useContext(OrderContext);
     const navigate = useNavigate();
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
 
@@ -17,7 +16,7 @@ function CheckoutPage() {
                 [name]: value
             },
         }));
-        console.log(order)
+        // console.log(order)
     };
 
     const handlePaymentChange = (e) => {
@@ -35,7 +34,11 @@ function CheckoutPage() {
 
     const handleSubmit = async () => {
         try {
-            await axios.post('http://localhost:5000/api/v1/order/add-new-order', order);
+            const updatedOrder = {
+                ...order,
+                trangThai: order.thanhToan.hinhThuc === 'Chuyển khoản ngân hàng' ? 'Chờ thanh toán' : 'Chờ xử lý'
+            }
+            await axios.post('http://localhost:5000/api/v1/order/checkout', updatedOrder);
             alert('Đặt hàng thành công!');
             navigate('/account/orders/motorcycle')
             localStorage.removeItem('order');
@@ -52,7 +55,7 @@ function CheckoutPage() {
                 <h4 className=''>1. Thông tin xe</h4>
                 <div className='flex'>
                     <div className="w-56">
-                        <img className='w-full' src={order.imgXe} alt="" />
+                        <img className='w-full' src={`http://localhost:5000/uploads/${order.imgXe}`} alt="" />
                     </div>
                     <div className="pl-6">
                         <p className='font-semibold'>{order.tenSanPham}</p>
@@ -102,22 +105,22 @@ function CheckoutPage() {
                         type="radio"
                         id="cod"
                         name="payment-method"
-                        value="cod"
-                        checked={order.thanhToan.hinhThuc === 'cod'}
+                        value="COD"
+                        checked={order.thanhToan.hinhThuc === 'COD'}
                         onChange={handlePaymentChange}
                     />
-                    <label className='pl-2' htmlFor="cod">Thanh toán khi nhận hàng</label>
+                    <label className='pl-2' htmlFor="COD">Thanh toán khi nhận hàng</label>
                 </div>
                 <div className="py-1">
                     <input
                         type="radio"
-                        id="chuyen-khoan"
+                        id="Chuyển khoản ngân hàng"
                         name="payment-method"
-                        value="chuyen-khoan"
-                        checked={order.thanhToan.hinhThuc === 'chuyen-khoan'}
+                        value="Chuyển khoản ngân hàng"
+                        checked={order.thanhToan.hinhThuc === 'Chuyển khoản ngân hàng'}
                         onChange={handlePaymentChange}
                     />
-                    <label className='pl-2' htmlFor="chuyen-khoan">Chuyển khoản ngân hàng</label>
+                    <label className='pl-2' htmlFor="Chuyển khoản ngân hàng">Chuyển khoản ngân hàng</label>
                 </div>
             </div>
 

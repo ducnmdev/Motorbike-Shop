@@ -2,11 +2,15 @@ import React from 'react'
 // import logo from "../../../assets/images/logos/logo.png"
 // import isc from "../../../assets/images/icons/icon_shopping_cart.png"
 import { Link, useLocation } from 'react-router-dom'
-import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext.jsx'
+import axios from 'axios';
 
 function NavBar() {
+
+    const { isLoggedIn } = useContext(AuthContext)
+
     const navigate = useNavigate();
     const location = useLocation();
     const [activeLink, setActiveLink] = useState('/');
@@ -32,8 +36,10 @@ function NavBar() {
             }
         }
 
-        fetchData();
-    }, [])
+        if (isLoggedIn) {
+            fetchData();
+        }
+    }, [isLoggedIn])
 
     useEffect(() => {
         const handleClickOutside = (event) => {

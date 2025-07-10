@@ -22,12 +22,6 @@ function Accessories() {
         };
 
         fetchAccessory()
-            .then(data => {
-                console.log("Accessory data:", data);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
     }, [])
 
     return (

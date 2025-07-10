@@ -1,5 +1,5 @@
 import React from 'react'
-import MotorcycleOrderList from '../../components/User/MotorcycleOrderList.jsx'
+import MotorcycleOrderList from '../../components/Order/MotorcycleOrderList.jsx'
 import AccountSidebar from '../../components/User/AccountSidebar.jsx'
 
 function MotorcycleOrderListPage() {

@@ -22,12 +22,6 @@ function SpareParts() {
         };
 
         fetchSpareParts()
-            .then(data => {
-                console.log("SpareParts data:", data);
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
     }, [])
 
     return (

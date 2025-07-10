@@ -26,17 +26,16 @@ const OrderSchema = new Schema({
     },
 
     thanhToan: {
-        hinhThuc: { type: String, enum: ['cod', 'chuyen-khoan'], default: 'cod' },
+        hinhThuc: { type: String, enum: ['COD', 'Chuyển khoản ngân hàng'], default: 'COD' },
         daThanhToan: { type: Boolean, default: false }
     },
 
     trangThai: {
         type: String,
-        enum: ['cho-xu-ly', 'dang-giao', 'da-giao', 'da-huy'],
-        default: 'cho-xu-ly'
+        enum: ['Chờ thanh toán', 'Chờ xử lý', 'Đang giao', 'Đã giao', 'Đã hủy'],
+        default: 'Chờ xử lý'
     },
 
-    diaChiGiaoHang: { type: String, required: true },
     createdAt: { type: Date, default: Date.now }
 });
 

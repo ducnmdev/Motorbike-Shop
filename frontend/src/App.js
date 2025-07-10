@@ -15,7 +15,7 @@ import AccountInfoPage from './pages/User/AccountInfoPage.jsx'
 import PromotionPage from './pages/Promotions/PromotionPage.jsx'
 import EventPage from './pages/Events/EventPage.jsx'
 import AccountSettingsPage from './pages/User/AccountSettingsPage.jsx'
-import MotorcycleOrderListPage from './pages/User/MotorcycleOrderListPage.jsx'
+import MotorcycleOrderListPage from './pages/Order/MotorcycleOrderListPage.jsx'
 import CheckOutPage from './pages/Order/checkOutPage.jsx'
 
 import CreateMotorcycle from './pages/Motorcycles/MotorcycleCreatePage.jsx'
@@ -26,12 +26,21 @@ import { AuthContext } from './contexts/AuthContext.jsx'
 import { Navigate } from 'react-router-dom';
 
 function App() {
-  const { isLoggedIn } = useContext(AuthContext)
+  const { isLoggedIn, isLoading } = useContext(AuthContext)
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
+
   return (
     <Routes>
       <Route element={<MainLayout />}>
         <Route path='/' element={<HomePage />} />
-        <Route path='/dang-nhap' element={<LoginPage />} />
+        <Route path='/dang-nhap' element={isLoggedIn ? <Navigate to="/" /> : <LoginPage />} />
         <Route path='/dang-ky' element={isLoggedIn ? <Navigate to="/" /> : <RegisterPage />} />
         <Route path='/xe-may' element={<MotorcycleListPage />} />
         <Route path='/phu-kien' element={<AccessoryListPage />} />
@@ -44,7 +53,7 @@ function App() {
         <Route path='/account/profile' element={!isLoggedIn ? <Navigate to="/" /> : <AccountInfoPage />} />
         <Route path='/account/settings' element={!isLoggedIn ? <Navigate to="/" /> : <AccountSettingsPage />} />
         <Route path='/account/orders/motorcycle' element={!isLoggedIn ? <Navigate to="/" /> : <MotorcycleOrderListPage />} />
-        <Route path='/dat-hang' element={<CheckOutPage />} />
+        <Route path='/dat-hang' element={!isLoggedIn ? <Navigate to='/dang-nhap' /> : <CheckOutPage />} />
       </Route>
 
       <Route path='/xe-may/create' element={<CreateMotorcycle />} />

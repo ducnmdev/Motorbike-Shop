@@ -4,17 +4,18 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(null)
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const checkLogin = async () => {
             try {
                 const res = await axios.get('http://localhost:5000/api/v1/auth/check', { withCredentials: true });
-                if (res.data.loggedIn) {
-                    setIsLoggedIn(true)
-                }
+                setIsLoggedIn(res.data.loggedIn === true);
             } catch (err) {
-                setIsLoggedIn(false)
+                setIsLoggedIn(false);
+            } finally {
+                setIsLoading(false);
             }
         };
 
@@ -22,9 +23,8 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn }}>
+        <AuthContext.Provider value={{ isLoggedIn, isLoading }}>
             {children}
         </AuthContext.Provider>
     );
 };
-
