@@ -45,14 +45,14 @@ function AccountSidebar() {
                         <li>
                             <Link
                                 to="/account/orders/motorcycle"
-                                className={currentPath === '/account/orders/motorcycle' ? 'text-red-600 no-underline' : 'text-black no-underline'}>
+                                className={currentPath.startsWith('/account/orders/motorcycle') ? 'text-red-600 no-underline' : 'text-black no-underline'}>
                                 Xe máy
                             </Link>
                         </li>
                         <li>
                             <Link
                                 to="/account/orders/accessory-sparepart"
-                                className={currentPath === '/account/orders/accessory-sparepart' ? 'text-red-600 no-underline' : 'text-black no-underline'}>
+                                className={currentPath.startsWith('/account/orders/accessory-sparepart') ? 'text-red-600 no-underline' : 'text-black no-underline'}>
                                 Phụ tùng/Phụ kiện
                             </Link>
                         </li>

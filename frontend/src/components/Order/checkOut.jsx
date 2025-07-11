@@ -103,7 +103,7 @@ function CheckoutPage() {
                 <div className="py-1">
                     <input
                         type="radio"
-                        id="cod"
+                        id="COD"
                         name="payment-method"
                         value="COD"
                         checked={order.thanhToan.hinhThuc === 'COD'}

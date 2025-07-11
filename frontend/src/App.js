@@ -16,7 +16,8 @@ import PromotionPage from './pages/Promotions/PromotionPage.jsx'
 import EventPage from './pages/Events/EventPage.jsx'
 import AccountSettingsPage from './pages/User/AccountSettingsPage.jsx'
 import MotorcycleOrderListPage from './pages/Order/MotorcycleOrderListPage.jsx'
-import CheckOutPage from './pages/Order/checkOutPage.jsx'
+import CheckOutPage from './pages/Order/CheckOutPage.jsx'
+import OrderDetailPage from './pages/Order/OrderDetailPage.jsx'
 
 import CreateMotorcycle from './pages/Motorcycles/MotorcycleCreatePage.jsx'
 import CreateAccessory from './pages/Accessories/AccessoryCreatePage.jsx'
@@ -52,8 +53,9 @@ function App() {
         <Route path='/phu-kien/:slug' element={<AccessoriesDetailPage />} />
         <Route path='/account/profile' element={!isLoggedIn ? <Navigate to="/" /> : <AccountInfoPage />} />
         <Route path='/account/settings' element={!isLoggedIn ? <Navigate to="/" /> : <AccountSettingsPage />} />
-        <Route path='/account/orders/motorcycle' element={!isLoggedIn ? <Navigate to="/" /> : <MotorcycleOrderListPage />} />
         <Route path='/dat-hang' element={!isLoggedIn ? <Navigate to='/dang-nhap' /> : <CheckOutPage />} />
+        <Route path='/account/orders/motorcycle' element={!isLoggedIn ? <Navigate to="/" /> : <MotorcycleOrderListPage />} />
+        <Route path='/account/orders/motorcycle/:id' element={!isLoggedIn ? <Navigate to="/" /> : <OrderDetailPage />} />
       </Route>
 
       <Route path='/xe-may/create' element={<CreateMotorcycle />} />
