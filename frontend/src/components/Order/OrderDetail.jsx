@@ -1,9 +1,10 @@
 import React from 'react'
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 function OrderDetail() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [order, setOrder] = useState()
 
@@ -11,7 +12,7 @@ function OrderDetail() {
         const fetchOrder = async () => {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/order/motorcycle/${id}`);
-                console.log(response.data);
+                // console.log(response.data)
                 setOrder(response.data)
             } catch (error) {
                 console.error("Error fetching Order:", error);
@@ -21,6 +22,17 @@ function OrderDetail() {
 
         fetchOrder()
     }, [id])
+
+    const handlePayment = () => {
+        sessionStorage.removeItem('payment_expired');
+        sessionStorage.removeItem('payment_start_time');
+        navigate('/payment', {
+            state: {
+                amount: order.tongTien,
+                transferContent: `NAP ${order._id.slice(-6)}`,
+            }
+        });
+    };
 
     const handleDownloadInvoice = () => {
         window.open(`http://localhost:5000/api/v1/order/${order._id}/invoice`, "_blank");
@@ -113,7 +125,7 @@ function OrderDetail() {
             <div className="flex justify-end gap-3 px-4 pb-4">
                 {((order.thanhToan.hinhThuc === 'Chuyển khoản ngân hàng') && (order.trangThai === "Chờ thanh toán"))
                     && (
-                        <button className="bg-black text-white px-6 py-2 hover:bg-gray-800">
+                        <button onClick={handlePayment} className="bg-black text-white px-6 py-2 hover:bg-gray-800">
                             Thanh toán ngay
                         </button>
                     )}
