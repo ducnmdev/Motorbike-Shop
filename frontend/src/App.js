@@ -29,7 +29,7 @@ import { AuthContext } from './contexts/AuthContext.jsx'
 import { Navigate } from 'react-router-dom';
 
 function App() {
-  const { isLoggedIn, isLoading } = useContext(AuthContext)
+  const { isLoggedIn, isLoading, isAdmin } = useContext(AuthContext)
 
   if (isLoading) {
     return (
@@ -62,9 +62,9 @@ function App() {
         <Route path='/payment' element={!isLoggedIn ? <Navigate to="/" /> : <PaymentPage />} />
       </Route>
 
-      <Route path='/xe-may/create' element={<CreateMotorcycle />} />
-      <Route path='/phu-kien/create' element={<CreateAccessory />} />
-      <Route path='/phu-tung/create' element={<CreateSparepart />} />
+      <Route path='/xe-may/create' element={isAdmin ? <CreateMotorcycle /> : <Navigate to="/" />} />
+      <Route path='/phu-kien/create' element={isAdmin ? <CreateAccessory /> : <Navigate to="/" />} />
+      <Route path='/phu-tung/create' element={isAdmin ? <CreateSparepart /> : <Navigate to="/" />} />
     </Routes>
   );
 }

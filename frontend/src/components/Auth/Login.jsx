@@ -56,9 +56,13 @@ function Login() {
             }, {
                 withCredentials: true // Cần thiết để cookie hoạt động
             });
-            console.log(response.data);
+            // console.log(response.data.user);
             alert("Đăng nhập thành công!")
-            navigate("/")
+            if (response.data.user.role === 'admin') {
+                navigate("/admin/dashboard")
+            } else if (response.data.user.role === 'user') {
+                navigate("/")
+            }
             window.location.reload()
         } catch (error) {
             console.error('Error create User data', error);

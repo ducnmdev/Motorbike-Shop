@@ -84,7 +84,7 @@ class AuthController {
             // Tạo JWT
             // tạo payload có id=user._id
             const token = jwt.sign(
-                { id: user._id },
+                { id: user._id, role: user.role },
                 process.env.JWT_SECRET,
                 { expiresIn: '1d' }
             );
@@ -105,7 +105,8 @@ class AuthController {
                     fullName: user.fullName,
                     userName: user.userName,
                     email: user.email,
-                    phoneNumber: user.phoneNumber
+                    phoneNumber: user.phoneNumber,
+                    role: user.role
                 }
             });
 
