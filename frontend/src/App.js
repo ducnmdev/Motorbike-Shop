@@ -21,9 +21,12 @@ import CheckOutPage from './pages/Order/CheckOutPage.jsx'
 import OrderDetailPage from './pages/Order/OrderDetailPage.jsx'
 import PaymentPage from './pages/Order/PaymentPage.jsx'
 
-import CreateMotorcycle from './pages/Motorcycles/MotorcycleCreatePage.jsx'
-import CreateAccessory from './pages/Accessories/AccessoryCreatePage.jsx'
-import CreateSparepart from './pages/SpareParts/SparePartCreatePage.jsx'
+import DashboardPage from './pages/Admin/DashboardPage.jsx'
+import ManageProductPage from './pages/Admin/ManageProductPage.jsx'
+import ManageOrderPage from './pages/Admin/ManageOrderPage.jsx'
+import CreateMotorcyclePage from './pages/Admin/CreateMotorcyclePage.jsx'
+import CreateAccessoryPage from './pages/Admin/CreateAccessoryPage.jsx'
+import CreateSparepartPage from './pages/Admin/CreateSparePartPage.jsx'
 
 import { AuthContext } from './contexts/AuthContext.jsx'
 import { Navigate } from 'react-router-dom';
@@ -62,9 +65,12 @@ function App() {
         <Route path='/payment' element={!isLoggedIn ? <Navigate to="/" /> : <PaymentPage />} />
       </Route>
 
-      <Route path='/xe-may/create' element={isAdmin ? <CreateMotorcycle /> : <Navigate to="/" />} />
-      <Route path='/phu-kien/create' element={isAdmin ? <CreateAccessory /> : <Navigate to="/" />} />
-      <Route path='/phu-tung/create' element={isAdmin ? <CreateSparepart /> : <Navigate to="/" />} />
+      <Route path='admin/dashboard' element={isAdmin ? <DashboardPage /> : <Navigate to="/" />} />
+      <Route path='admin/products' element={isAdmin ? <ManageProductPage /> : <Navigate to="/" />} />
+      <Route path='admin/orders' element={isAdmin ? <ManageOrderPage /> : <Navigate to="/" />} />
+      <Route path='admin/add-update-motorcycle' element={isAdmin ? <CreateMotorcyclePage /> : <Navigate to="/" />} />
+      <Route path='admin/add-update-accessory' element={isAdmin ? <CreateAccessoryPage /> : <Navigate to="/" />} />
+      <Route path='admin/add-update-sparepart' element={isAdmin ? <CreateSparepartPage /> : <Navigate to="/" />} />
     </Routes>
   );
 }

@@ -179,7 +179,8 @@ function CreateMotorcycle() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mt-4 p-4 border-1 border-neutral-200 rounded-md">
+        <form onSubmit={handleSubmit} className="w-1/2 mx-auto p-4 border-1 border-neutral-200 rounded-md overflow-y-auto h-screen">
+            <h3 className='text-[#de0000] text-center'>Thêm xe máy</h3>
             <div className="mb-2">
                 <label className="block mb-2 text-sm font-medium dark:text-white">Banner <span className='text-[#de0000]'>*</span></label>
                 <input
