@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const AdminController = require('../controllers/adminController');
-const verifyToken = require('../middleware/verifyToken');
-const verifyAdmin = require('../middleware/verifyAdmin');
+const verifyToken = require('../middlewares/verifyToken');
 
-router.get('/admin/orders', verifyToken, verifyAdmin, adminController.getAllOrders);
+router.get('/products', verifyToken, AdminController.getProducts);
 
 module.exports = router;
