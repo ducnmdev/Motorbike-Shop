@@ -14,7 +14,6 @@ const OrderSchema = new Schema({
     phienBan: { type: String, required: true },
     mauSac: { type: String, required: true },
     soLuong: { type: Number, default: 1 },
-    // gia: { type: Number, required: true },
     imgXe: { type: String },
 
     tongTien: { type: Number, required: true },
