@@ -68,9 +68,12 @@ function App() {
       <Route path='admin/dashboard' element={isAdmin ? <DashboardPage /> : <Navigate to="/" />} />
       <Route path='admin/products' element={isAdmin ? <ManageProductPage /> : <Navigate to="/" />} />
       <Route path='admin/orders' element={isAdmin ? <ManageOrderPage /> : <Navigate to="/" />} />
-      <Route path='admin/add-update-motorcycle' element={isAdmin ? <CreateMotorcyclePage /> : <Navigate to="/" />} />
-      <Route path='admin/add-update-accessory' element={isAdmin ? <CreateAccessoryPage /> : <Navigate to="/" />} />
-      <Route path='admin/add-update-sparepart' element={isAdmin ? <CreateSparepartPage /> : <Navigate to="/" />} />
+      <Route path='admin/add-motorcycle' element={isAdmin ? <CreateMotorcyclePage /> : <Navigate to="/" />} />
+      <Route path='admin/add-accessory' element={isAdmin ? <CreateAccessoryPage /> : <Navigate to="/" />} />
+      <Route path='admin/add-sparepart' element={isAdmin ? <CreateSparepartPage /> : <Navigate to="/" />} />
+      <Route path='admin/update-motorcycle' element={isAdmin ? <CreateMotorcyclePage /> : <Navigate to="/" />} />
+      <Route path='admin/update-accessory' element={isAdmin ? <CreateAccessoryPage /> : <Navigate to="/" />} />
+      <Route path='admin/update-sparepart' element={isAdmin ? <CreateSparepartPage /> : <Navigate to="/" />} />
     </Routes>
   );
 }
