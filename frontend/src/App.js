@@ -27,6 +27,7 @@ import ManageOrderPage from './pages/Admin/ManageOrderPage.jsx'
 import CreateMotorcyclePage from './pages/Admin/CreateMotorcyclePage.jsx'
 import CreateAccessoryPage from './pages/Admin/CreateAccessoryPage.jsx'
 import CreateSparepartPage from './pages/Admin/CreateSparePartPage.jsx'
+import ManageOrderDetailPage from './pages/Admin/OrderDetailPage.jsx'
 
 import { AuthContext } from './contexts/AuthContext.jsx'
 import { Navigate } from 'react-router-dom';
@@ -68,6 +69,7 @@ function App() {
       <Route path='admin/dashboard' element={isAdmin ? <DashboardPage /> : <Navigate to="/" />} />
       <Route path='admin/products' element={isAdmin ? <ManageProductPage /> : <Navigate to="/" />} />
       <Route path='admin/orders' element={isAdmin ? <ManageOrderPage /> : <Navigate to="/" />} />
+      <Route path='admin/orders/:id' element={isAdmin ? <ManageOrderDetailPage /> : <Navigate to="/" />} />
       <Route path='admin/add-motorcycle' element={isAdmin ? <CreateMotorcyclePage /> : <Navigate to="/" />} />
       <Route path='admin/add-accessory' element={isAdmin ? <CreateAccessoryPage /> : <Navigate to="/" />} />
       <Route path='admin/add-sparepart' element={isAdmin ? <CreateSparepartPage /> : <Navigate to="/" />} />

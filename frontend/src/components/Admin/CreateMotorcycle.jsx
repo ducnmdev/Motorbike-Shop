@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useLocation } from 'react-router-dom';
 
 function CreateMotorcycle() {
 
@@ -47,6 +48,59 @@ function CreateMotorcycle() {
             ],
         },
     ]);
+
+    const location = useLocation()
+    const { item } = location.state || {}
+    const { isEdit } = location.state || false
+    // console.log(item);
+    
+
+    useEffect(() => {
+        if (isEdit && item) {
+            setTenXe(item.tenXe || '');
+            setGiaChiTu(item.giaChiTu || 0);
+            setBanner(item.banner || null);
+            setImgTinhNang(item.imgTinhNang || null);
+            setImgThietKe(item.imgThietKe || null);
+            setImgDongCo(item.imgDongCo || null);
+            setImgCongNghe(item.imgCongNghe || null);
+            setImgTienIchAnToan(item.imgTienIchAnToan || null);
+            setTenTinhNang(item.tenTinhNang || '');
+            setNoiDungTN(item.noiDungTN || '');
+            setThietKe(item.thietKe || '');
+            setDongCo(item.dongCo || '');
+            setCongNghe(item.congNghe || '');
+            setTienIchAnToan(item.tienIchAnToan || '');
+            setKhoiLuongBanThan(item.khoiLuongBanThan || '');
+            setDaiRongCao(item.daiRongCao || '');
+            setKhoangCachTrucBanhXe(item.khoangCachTrucBanhXe || '');
+            setDoCaoYen(item.doCaoYen || '');
+            setKhoangSangGamXe(item.khoangSangGamXe || '');
+            setDungTichBinhXang(item.dungTichBinhXang || '');
+            setKichCoLopTruocSau(item.kichCoLopTruocSau || '');
+            setPhuocTruoc(item.phuocTruoc || '');
+            setPhuocSau(item.phuocSau || '');
+            setLoaiDongCo(item.loaiDongCo || '');
+            setCongXuatToiDa(item.congXuatToiDa || '');
+            setDungTichNhotMay(item.dungTichNhotMay || '');
+            setMucTieuThuNhienLieu(item.mucTieuThuNhienLieu || '');
+            setHopSo(item.hopSo || '');
+            setHeThongKhoiDong(item.heThongKhoiDong || '');
+            setMomentCucDai(item.momentCucDai || '');
+            setDungTichXyLanh(item.dungTichXyLanh || '');
+            setDuongKinhxHanhTrinhPitTong(item.duongKinhxHanhTrinhPitTong || '');
+            setTySoNen(item.tySoNen || '');
+            setLibImg(item.libImg || []);
+            setKieuXe(item.kieuXe || '');
+            setPhienBan(item.phienBan || [
+                {
+                    tenPhienBan: '',
+                    mauSac: [{ tenMau: '', hex: [''], imgXe: null, gia: 0, soLuong: 0 }]
+                }
+            ]);
+        }
+    }, [isEdit, item]);
+
 
     const handleAddLibImg = (e) => {
         const selectedFiles = Array.from(e.target.files)
@@ -103,7 +157,6 @@ function CreateMotorcycle() {
 
         // Tạo đối tượng FormData để chứa dữ liệu
         const formData = new FormData();
-
 
         phienBan.forEach((pb) => {
             pb.mauSac.forEach((mau) => {
@@ -164,23 +217,38 @@ function CreateMotorcycle() {
         formData.append('tySoNen', tySoNen);
         formData.append('phienBan', JSON.stringify(phienBan))
 
-        // console.log(phienBan);
-
-        try {
-            const response = await axios.post('http://localhost:5000/api/v1/xe-may/create', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+        if (isEdit) {
+            await axios.patch(
+                `http://localhost:5000/api/v1/admin/update-motorcycle/${item._id}`,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
                 }
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error('Error uploading motorcycle data', error);
+            );
+                alert('Sửa thành công!')
+        } else {
+            try {
+                // const response = 
+                await axios.post('http://localhost:5000/api/v1/xe-may/create', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+                alert('Thêm thành công!')
+                // console.log(response.data);
+            } catch (error) {
+                console.error('Error uploading motorcycle data', error);
+            }
         }
+
+
     };
 
     return (
         <form onSubmit={handleSubmit} className="w-1/2 mx-auto p-4 border-1 border-neutral-200 rounded-md overflow-y-auto h-screen">
-            <h3 className='text-[#de0000] text-center'>Thêm xe máy</h3>
+            <h3 className='text-[#de0000] text-center'>{isEdit ? 'Sửa xe máy' : 'Thêm xe máy'}</h3>
             <div className="mb-2">
                 <label className="block mb-2 text-sm font-medium dark:text-white">Banner <span className='text-[#de0000]'>*</span></label>
                 <input
@@ -194,7 +262,11 @@ function CreateMotorcycle() {
                     <div className="mt-2 flex flex-wrap">
                         <div className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(banner)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof banner === 'string'
+                                        ? `http://localhost:5000/uploads/${banner}`
+                                        : URL.createObjectURL(banner)
+                                }
                                 alt={banner.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -307,7 +379,11 @@ function CreateMotorcycle() {
                                     <div className="mt-2 flex flex-wrap">
                                         <div className="flex items-center mb-2">
                                             <img
-                                                src={URL.createObjectURL(phienBan[index].mauSac[msIndex].imgXe)} // Tạo URL tạm thời cho hình ảnh
+                                                src={
+                                                    typeof phienBan[index].mauSac[msIndex].imgXe === 'string'
+                                                        ? `http://localhost:5000/uploads/${phienBan[index].mauSac[msIndex].imgXe}`
+                                                        : URL.createObjectURL(phienBan[index].mauSac[msIndex].imgXe)
+                                                }
                                                 alt={phienBan[index].mauSac[msIndex].imgXe.name}
                                                 className="h-36 w-36 m-1 object-cover rounded-md"
                                             />
@@ -389,7 +465,11 @@ function CreateMotorcycle() {
                     <div className="mt-2 flex flex-wrap">
                         <div className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(imgTinhNang)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof imgTinhNang === 'string'
+                                        ? `http://localhost:5000/uploads/${imgTinhNang}`
+                                        : URL.createObjectURL(imgTinhNang)
+                                }
                                 alt={imgTinhNang.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -423,7 +503,11 @@ function CreateMotorcycle() {
                     <div className="mt-2 flex flex-wrap">
                         <div className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(imgThietKe)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof imgThietKe === 'string'
+                                        ? `http://localhost:5000/uploads/${imgThietKe}`
+                                        : URL.createObjectURL(imgThietKe)
+                                }
                                 alt={imgThietKe.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -458,7 +542,11 @@ function CreateMotorcycle() {
                     <div className="mt-2 flex flex-wrap">
                         <div className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(imgDongCo)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof imgDongCo === 'string'
+                                        ? `http://localhost:5000/uploads/${imgDongCo}`
+                                        : URL.createObjectURL(imgDongCo)
+                                }
                                 alt={imgDongCo.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -493,7 +581,11 @@ function CreateMotorcycle() {
                     <div className="mt-2 flex flex-wrap">
                         <div className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(imgCongNghe)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof imgCongNghe === 'string'
+                                        ? `http://localhost:5000/uploads/${imgCongNghe}`
+                                        : URL.createObjectURL(imgCongNghe)
+                                }
                                 alt={imgCongNghe.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -528,7 +620,12 @@ function CreateMotorcycle() {
                     <div className="mt-2 flex flex-wrap">
                         <div className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(imgTienIchAnToan)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof imgTienIchAnToan === 'string'
+                                        ? `http://localhost:5000/uploads/${imgTienIchAnToan}`
+                                        : URL.createObjectURL(imgTienIchAnToan)
+
+                                }
                                 alt={imgTienIchAnToan.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -781,7 +878,12 @@ function CreateMotorcycle() {
                     {libImg.map((img, index) => (
                         <div key={index} className="flex items-center mb-2">
                             <img
-                                src={URL.createObjectURL(img)} // Tạo URL tạm thời cho hình ảnh
+                                src={
+                                    typeof img === 'string'
+                                        ? `http://localhost:5000/uploads/${img}`
+                                        : URL.createObjectURL(img)
+
+                                }
                                 alt={img.name}
                                 className="h-36 w-36 m-1 object-cover rounded-md"
                             />
@@ -791,7 +893,7 @@ function CreateMotorcycle() {
             </div>
 
             <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-sm text-sm w-full px-5 py-2.5 mt-4">
-                Thêm sản phẩm
+                {isEdit ? 'Sửa xe máy' : 'Thêm xe máy'}
             </button>
         </form>
     );
