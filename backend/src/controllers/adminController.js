@@ -103,6 +103,7 @@ class AdminController {
     getOrders(req, res, next) {
         const type = req.query.type
         Order.find(type ? { trangThai: type } : {})
+            .sort({ createdAt: -1 })
             .then(order => {
                 res.status(200).json(order)
             })
@@ -117,6 +118,20 @@ class AdminController {
                 res.status(200).json(order)
             })
             .catch(error => res.status(500).json({ message: error.message }));
+    }
+
+    // [PATCH] /admin/update-order-status/:id
+    async updateOrderStatus(req, res) {
+        try {
+            const { id } = req.params;
+            const { trangThai } = req.body;
+
+            const updated = await Order.findByIdAndUpdate(id, { trangThai }, { new: true });
+
+            res.status(200).json(updated);
+        } catch (err) {
+            res.status(500).json({ message: 'Cập nhật thất bại', error: err });
+        }
     }
 
     // [PATCH] /admin/update-accessory

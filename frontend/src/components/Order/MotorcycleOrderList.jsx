@@ -39,9 +39,9 @@ function MotorcycleOrderList() {
     }
   };
 
-  // if (!orders) {
-  //   return null
-  // }
+  if (!orders) {
+    return null
+  }
 
   return (
     <div className='flex-1 p-8 pl-14 font-vietnam'>
