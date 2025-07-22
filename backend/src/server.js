@@ -16,7 +16,7 @@ app.use(express.urlencoded({
    extended: true
 }));
 app.use(cors({
-   origin: 'https://kusz.vercel.app/',
+   origin: 'https://kusz.vercel.app',
    credentials: true, // cho phép gửi cookie
 }));
 app.use(cookieParser());
