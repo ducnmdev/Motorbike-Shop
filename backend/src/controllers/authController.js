@@ -93,8 +93,8 @@ class AuthController {
             res.cookie('jwt', token, {
                 httpOnly: true,
                 maxAge: 1 * 24 * 60 * 60 * 1000, // 1 ngày
-                secure: process.env.NODE_ENV !== 'development', // nếu k ở chế độ dev -> secure: true | sau này deploy lên thì thay sang NODE_ENV=production
-                sameSite: 'Lax', // hoặc Strict 
+                secure: true,
+                sameSite: 'None', 
             });
 
             // Thành công
