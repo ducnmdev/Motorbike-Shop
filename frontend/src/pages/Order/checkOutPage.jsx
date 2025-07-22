@@ -2,7 +2,7 @@ import React from 'react'
 import CheckOut from '../../components/Order/CheckOut'
 import { Helmet } from 'react-helmet'
 
-function checkOutPage() {
+function CheckoutPage() {
     return (
         <>
             <Helmet>
@@ -14,4 +14,4 @@ function checkOutPage() {
     )
 }
 
-export default checkOutPage
+export default CheckoutPage
