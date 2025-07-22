@@ -19,11 +19,8 @@ function Motorcycles() {
   useEffect(() => {
     const fetchMotorcycles = async (type) => {
       try {
-        // console.log({ type })
         const response = await axios.get('http://localhost:5000/api/v1/xe-may/', { params: { type } });
         setData(response.data);
-        // console.log(response.data);
-        // return response.data;
       } catch (error) {
         console.error("Error fetching motorcycles:", error);
         throw error;
@@ -31,21 +28,15 @@ function Motorcycles() {
     };
 
     fetchMotorcycles(type)
-    // .then(data => {
-    //   // console.log("Motorcycles data:", data);
-    // })
-    // .catch(error => {
-    //   console.error("Error:", error);
-    // });
   }, [type])
 
-  // if (!data) {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
-  //     </div>
-  //   )
-  // }
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    )
+  }
 
   return (
     <div className='px-[20px] max-w-[1390px] mx-auto'>

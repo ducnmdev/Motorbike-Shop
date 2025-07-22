@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
 
-function AccessoryDetail() {
+function AccessoryDetail({ getTenPhuKien }) {
     const { slug } = useParams();
     const [accessory, setAccessory] = useState(null);
 
@@ -13,6 +13,9 @@ function AccessoryDetail() {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/phu-kien/${slug}`);
                 setAccessory(response.data);
+                if (getTenPhuKien) {
+                    getTenPhuKien(response.data.tenPhuKien);
+                }
                 return response.data;
             } catch (error) {
                 console.error("Error fetching Accessory:", error);
@@ -27,8 +30,15 @@ function AccessoryDetail() {
             .catch(error => {
                 console.error("Error:", error);
             });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    }, [slug, getTenPhuKien])
+
+    if (!accessory) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        )
+    }
 
     return (
         <>

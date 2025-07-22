@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
 
-function SparePartDetail() {
+function SparePartDetail({ getTenPhuTung }) {
 
     const { slug } = useParams();
     const [sparePart, setSparePart] = useState(null);
@@ -14,6 +14,9 @@ function SparePartDetail() {
             try {
                 const response = await axios.get(`http://localhost:5000/api/v1/phu-tung/${slug}`);
                 setSparePart(response.data);
+                if (getTenPhuTung) {
+                    getTenPhuTung(response.data.tenPhuTung)
+                }
                 return response.data;
             } catch (error) {
                 console.error("Error fetching SparePart:", error);
@@ -30,6 +33,14 @@ function SparePartDetail() {
             });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    if (!sparePart) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        )
+    }
 
     return (
         <>

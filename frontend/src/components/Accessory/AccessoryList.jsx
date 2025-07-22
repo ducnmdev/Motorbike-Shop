@@ -24,6 +24,14 @@ function Accessories() {
         fetchAccessory()
     }, [])
 
+    if (!data) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        )
+    }
+
     return (
         <div className='px-[20px] max-w-[1390px] mx-auto'>
             <div className='mb-[56px] mt-[40px]'>

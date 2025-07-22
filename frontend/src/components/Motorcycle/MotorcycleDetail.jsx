@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/AuthContext.jsx'
 import axios from 'axios'
 
 
-function MotorcycleDetail() {
+function MotorcycleDetail({ getTenXe }) {
 
     const { isLoggedIn } = useContext(AuthContext)
 
@@ -100,6 +100,9 @@ function MotorcycleDetail() {
                     imgXe: response.data.phienBan[0].mauSac[0].imgXe,
                     tongTien: response.data.phienBan[0].mauSac[0].gia,
                 }));
+                if (getTenXe) {
+                    getTenXe(response.data.tenXe);
+                }
                 // console.log(response.data)
                 // return response.data;
             } catch (error) {
@@ -118,6 +121,14 @@ function MotorcycleDetail() {
         } else {
             navigate('/dat-hang')
         }
+    }
+
+    if (!motorcycle) {
+        return (
+            <div className="flex items-center justify-center h-screen">
+                <div className="w-12 h-12 border-4 border-[#de0000] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        )
     }
 
     return (

@@ -1,9 +1,16 @@
 import React from 'react'
 import Login from '../../components/Auth/Login.jsx'
+import { Helmet } from "react-helmet";
 
 function LoginPage() {
   return (
-    <Login/>
+    <>
+      <Helmet>
+        <title>Đăng nhập</title>
+        <meta name="description" content="" />
+      </Helmet>
+      <Login />
+    </>
   )
 }
 
