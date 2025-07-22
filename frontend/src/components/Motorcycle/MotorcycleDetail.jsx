@@ -24,7 +24,7 @@ function MotorcycleDetail({ getTenXe }) {
 
     const handleChangeInfo = (index, msIndex) => {
         setGia(motorcycle.phienBan[index].mauSac[msIndex].gia.toLocaleString('vi-VN'))
-        setImgXe(`http://localhost:5000/uploads/${motorcycle.phienBan[index].mauSac[msIndex].imgXe}`)
+        setImgXe(`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.phienBan[index].mauSac[msIndex].imgXe}`)
         setSoLuong(motorcycle.phienBan[index].mauSac[msIndex].soLuong)
 
         setOrder(prev => ({
@@ -139,7 +139,7 @@ function MotorcycleDetail({ getTenXe }) {
                     <div className='relative w-full'>
                         <button className="w-full h-auto p-0">
                             <img className='w-full h-auto object-cover'
-                                src={`http://localhost:5000/uploads/${motorcycle.banner}`}
+                                src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.banner}`}
                                 alt='Banner' />
                         </button>
                     </div>
@@ -220,7 +220,7 @@ function MotorcycleDetail({ getTenXe }) {
                         <div className='block w-[860px]'>
                             <div className='min-h-[400px]'>
                                 <img className='w-full'
-                                    src={imgXe === "" ? (`http://localhost:5000/uploads/${motorcycle.phienBan[0].mauSac[0].imgXe}`) : imgXe}
+                                    src={imgXe === "" ? (`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.phienBan[0].mauSac[0].imgXe}`) : imgXe}
                                     alt="" />
                             </div>
                             <div className='font-vietnam text-[#5f5f5f] mb-[80px]'>
@@ -299,7 +299,7 @@ function MotorcycleDetail({ getTenXe }) {
                             <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                 <img
                                     className='min-h-full min-w-full w-auto h-auto object-cover'
-                                    src={`http://localhost:5000/uploads/${motorcycle.imgTinhNang}`}
+                                    src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgTinhNang}`}
                                     alt=''
                                 />
                             </div>
@@ -342,7 +342,7 @@ function MotorcycleDetail({ getTenXe }) {
                             <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                 <img
                                     className='min-h-full min-w-full w-auto h-auto object-cover'
-                                    src={`http://localhost:5000/uploads/${motorcycle.imgThietKe}`}
+                                    src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgThietKe}`}
                                     alt="huh" />
                             </div>
                         </div>
@@ -358,7 +358,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgDongCo}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgDongCo}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -395,7 +395,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgCongNghe}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgCongNghe}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -408,7 +408,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgTienIchAnToan}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgTienIchAnToan}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -437,7 +437,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgDongCo}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgDongCo}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -474,7 +474,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgTienIchAnToan}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgTienIchAnToan}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -491,7 +491,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgCongNghe}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgCongNghe}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -528,7 +528,7 @@ function MotorcycleDetail({ getTenXe }) {
                                 <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                     <img
                                         className='min-h-full min-w-full w-auto h-auto object-cover'
-                                        src={`http://localhost:5000/uploads/${motorcycle.imgTienIchAnToan}`}
+                                        src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgTienIchAnToan}`}
                                         alt="huh" />
                                 </div>
                             </div>
@@ -544,7 +544,7 @@ function MotorcycleDetail({ getTenXe }) {
                             <div className='relative flex w-full h-full justify-center items-center overflow-hidden'>
                                 <img
                                     className='min-h-full min-w-full w-auto h-auto object-cover'
-                                    src={`http://localhost:5000/uploads/${motorcycle.imgTienIchAnToan}`}
+                                    src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${motorcycle.imgTienIchAnToan}`}
                                     alt="huh" />
                             </div>
                         </div>
@@ -790,7 +790,7 @@ function MotorcycleDetail({ getTenXe }) {
                         motorcycle.libImg.map((img, index) => (
                             <div key={index} className='justify-center items-center w-[33%] min-h-[200px] p-[4px] cursor-pointer'>
                                 <img className='w-full h-full object-cover'
-                                    src={`http://localhost:5000/uploads/${img}`}
+                                    src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${img}`}
                                     alt="" />
                             </div>
                         ))

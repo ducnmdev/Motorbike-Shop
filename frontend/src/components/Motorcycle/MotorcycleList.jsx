@@ -97,7 +97,7 @@ function Motorcycles() {
                   <span className='text-[22px] font-vietnam font-extrabold leading-[30px]'>{data.tenXe}</span>
                 </div>
                 <div className='absolute top-1/2 left-1/2 w-[238px] translate-x-[-50%] translate-y-[-50%]'>
-                  <img className='w-full' src={`http://localhost:5000/uploads/${data.phienBan[0].mauSac[0].imgXe}`} alt=""></img>
+                  <img className='w-full' src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${data.phienBan[0].mauSac[0].imgXe}`} alt=""></img>
                 </div>
                 <div className='absolute flex bottom-[15px] justify-center font-vietnam'>
                   Giá từ:<span className='font-bold'>&nbsp;{data.giaChiTu.toLocaleString('vi-VN')}&nbsp;</span>VNĐ

@@ -52,7 +52,7 @@ function Accessories() {
                         <div key={index} className='relative h-[275px] w-[25%] mb-[15px] px-[15px]'>
                             <Link to={`/phu-kien/${data.slug}`} className='relative block no-underline h-full p-[15px] text-[#000]'>
                                 <div className='flex justify-center'>
-                                    <img className='h-[200px]' src={`http://localhost:5000/uploads/${data.imgPhuKien}`} alt=""></img>
+                                    <img className='h-[200px]' src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${data.imgPhuKien}`} alt=""></img>
                                 </div>
                                 <div className='flex justify-center relative z-[1]'>
                                     <span className='text-[17px] text-neutral-700 flex justify-center font-vietnam font-semibold leading-[30px]'>{data.tenPhuKien}</span>

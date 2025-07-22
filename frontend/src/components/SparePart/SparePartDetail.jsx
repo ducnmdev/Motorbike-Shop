@@ -75,7 +75,7 @@ function SparePartDetail({ getTenPhuTung }) {
                     <div className='w-[55%]'>
                         <img
                             className='block'
-                            src={`http://localhost:5000/uploads/${sparePart.imgPhuTung}`} alt="" />
+                            src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${sparePart.imgPhuTung}`} alt="" />
                     </div>
                 </div>
             ) : null}

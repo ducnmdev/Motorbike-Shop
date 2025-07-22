@@ -58,7 +58,7 @@ function MotorcycleOrderList() {
           </div>
           <div className='flex'>
             <div className="w-56">
-              <img className='w-full' src={`http://localhost:5000/uploads/${order.imgXe}`} alt="" />
+              <img className='w-full' src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${order.imgXe}`} alt="" />
             </div>
             <div className="pl-6 w-full">
               <p className='font-semibold uppercase'>{order.tenSanPham}</p>

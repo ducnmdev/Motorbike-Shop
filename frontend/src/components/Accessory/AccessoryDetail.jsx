@@ -80,7 +80,7 @@ function AccessoryDetail({ getTenPhuKien }) {
                     <div className='w-[55%] flex justify-center'>
                         <img
                             className='block h-[50%]'
-                            src={`http://localhost:5000/uploads/${accessory.imgPhuKien}`} alt="" />
+                            src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${accessory.imgPhuKien}`} alt="" />
                     </div>
                 </div>
             ) : null}

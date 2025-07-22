@@ -55,7 +55,7 @@ function CheckoutPage() {
                 <h4 className=''>1. Thông tin xe</h4>
                 <div className='flex'>
                     <div className="w-56">
-                        <img className='w-full' src={`http://localhost:5000/uploads/${order.imgXe}`} alt="" />
+                        <img className='w-full' src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${order.imgXe}`} alt="" />
                     </div>
                     <div className="pl-6">
                         <p className='font-semibold'>{order.tenSanPham}</p>

@@ -264,7 +264,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof banner === 'string'
-                                        ? `http://localhost:5000/uploads/${banner}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${banner}`
                                         : URL.createObjectURL(banner)
                                 }
                                 alt={banner.name}
@@ -381,7 +381,7 @@ function CreateMotorcycle() {
                                             <img
                                                 src={
                                                     typeof phienBan[index].mauSac[msIndex].imgXe === 'string'
-                                                        ? `http://localhost:5000/uploads/${phienBan[index].mauSac[msIndex].imgXe}`
+                                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/${phienBan[index].mauSac[msIndex].imgXe}`
                                                         : URL.createObjectURL(phienBan[index].mauSac[msIndex].imgXe)
                                                 }
                                                 alt={phienBan[index].mauSac[msIndex].imgXe.name}
@@ -467,7 +467,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof imgTinhNang === 'string'
-                                        ? `http://localhost:5000/uploads/${imgTinhNang}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${imgTinhNang}`
                                         : URL.createObjectURL(imgTinhNang)
                                 }
                                 alt={imgTinhNang.name}
@@ -505,7 +505,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof imgThietKe === 'string'
-                                        ? `http://localhost:5000/uploads/${imgThietKe}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${imgThietKe}`
                                         : URL.createObjectURL(imgThietKe)
                                 }
                                 alt={imgThietKe.name}
@@ -544,7 +544,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof imgDongCo === 'string'
-                                        ? `http://localhost:5000/uploads/${imgDongCo}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${imgDongCo}`
                                         : URL.createObjectURL(imgDongCo)
                                 }
                                 alt={imgDongCo.name}
@@ -583,7 +583,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof imgCongNghe === 'string'
-                                        ? `http://localhost:5000/uploads/${imgCongNghe}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${imgCongNghe}`
                                         : URL.createObjectURL(imgCongNghe)
                                 }
                                 alt={imgCongNghe.name}
@@ -622,7 +622,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof imgTienIchAnToan === 'string'
-                                        ? `http://localhost:5000/uploads/${imgTienIchAnToan}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${imgTienIchAnToan}`
                                         : URL.createObjectURL(imgTienIchAnToan)
 
                                 }
@@ -880,7 +880,7 @@ function CreateMotorcycle() {
                             <img
                                 src={
                                     typeof img === 'string'
-                                        ? `http://localhost:5000/uploads/${img}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${img}`
                                         : URL.createObjectURL(img)
 
                                 }

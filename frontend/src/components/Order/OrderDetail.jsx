@@ -81,7 +81,7 @@ function OrderDetail() {
                 <div className="grid grid-cols-5 items-center px-4 py-3 border-b">
                     <div className="col-span-2 flex items-center gap-4">
                         <img
-                            src={`http://localhost:5000/uploads/${order.imgXe}`}
+                            src={`${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${order.imgXe}`}
                             alt="Ảnh xe"
                             className="w-36 object-cover rounded"
                         />

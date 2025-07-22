@@ -148,7 +148,7 @@ function CreateAccessory() {
                             <img
                                 src={
                                     typeof imgPhuKien === 'string'
-                                        ? `http://localhost:5000/uploads/${imgPhuKien}`
+                                        ? `${process.env.REACT_APP_API_BASE_URL.replace('/api/v1', '')}/uploads/${imgPhuKien}`
                                         : URL.createObjectURL(imgPhuKien)
                                 }
                                 alt={imgPhuKien.name}
