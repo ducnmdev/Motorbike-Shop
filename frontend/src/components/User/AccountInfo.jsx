@@ -17,7 +17,7 @@ const AccountInfo = () => {
         const fetchData = async () => {
             try {
                 const response =
-                    await axios.get('http://localhost:5000/api/v1/user/account/profile', {
+                    await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user/account/profile`, {
                         withCredentials: true // bắt buộc
                     });
                 setEmail(response.data.user.email);
@@ -44,7 +44,7 @@ const AccountInfo = () => {
 
         try {
             await axios.put(
-                'http://localhost:5000/api/v1/user/account/updateAccountInfo',
+                `${process.env.REACT_APP_API_BASE_URL}/user/account/updateAccountInfo`,
                 { email, fullName, phoneNumber, address },
                 { withCredentials: true }
             );

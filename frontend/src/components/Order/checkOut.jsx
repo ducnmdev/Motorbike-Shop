@@ -38,7 +38,7 @@ function CheckoutPage() {
                 ...order,
                 trangThai: order.thanhToan.hinhThuc === 'Chuyển khoản ngân hàng' ? 'Chờ thanh toán' : 'Chờ xử lý'
             }
-            await axios.post('http://localhost:5000/api/v1/order/checkout', updatedOrder);
+            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/order/checkout`, updatedOrder);
             alert('Đặt hàng thành công!');
             navigate('/account/orders/motorcycle')
             localStorage.removeItem('order');

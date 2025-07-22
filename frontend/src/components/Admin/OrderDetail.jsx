@@ -26,7 +26,7 @@ function OrderDetail() {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/v1/admin/order-detail/${id}`, {
+                const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/order-detail/${id}`, {
                     withCredentials: true
                 });
                 setOrder(res.data);
@@ -42,7 +42,7 @@ function OrderDetail() {
 
     const handleSubmit = async () => {
         try {
-            const res = await axios.patch(`http://localhost:5000/api/v1/admin/update-order-status/${id}`,
+            const res = await axios.patch(`${process.env.REACT_APP_API_BASE_URL}/admin/update-order-status/${id}`,
                 { trangThai },
                 { withCredentials: true }
             );

@@ -40,7 +40,7 @@ function CreateAccessory() {
         if (isEdit) {
             try {
                 await axios.patch(
-                    `http://localhost:5000/api/v1/admin/update-sparepart/${item._id}`,
+                    `${process.env.REACT_APP_API_BASE_URL}/admin/update-sparepart/${item._id}`,
                     formData,
                     {
                         headers: {
@@ -55,7 +55,7 @@ function CreateAccessory() {
         } else {
             try {
                 // const response = 
-                await axios.post('http://localhost:5000/api/v1/phu-tung/create', formData, {
+                await axios.post(`${process.env.REACT_APP_API_BASE_URL}/phu-tung/create`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

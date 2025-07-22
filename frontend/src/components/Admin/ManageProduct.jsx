@@ -29,7 +29,7 @@ function ManageProduct() {
     if (!window.confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/v1/admin/delete-product/${id}?type=${typeItem}`, {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/admin/delete-product/${id}?type=${typeItem}`, {
         withCredentials: true,
       });
       alert('Xóa sản phẩm thành công!')
@@ -44,7 +44,7 @@ function ManageProduct() {
   const fetchItems = async (type) => {
     setTypeItem(type)
     try {
-      const response = await axios.get(`http://localhost:5000/api/v1/admin/products?type=${type}`, {
+      const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/products?type=${type}`, {
         withCredentials: true
       });
       setItems(response.data)

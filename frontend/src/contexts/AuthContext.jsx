@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkLogin = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/v1/auth/check', { withCredentials: true });
+                const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth/check`, { withCredentials: true });
                 setIsLoggedIn(res.data.loggedIn === true);
                 if (res.data.user.role === 'admin') setIsAdmin(true);
             } catch (err) {

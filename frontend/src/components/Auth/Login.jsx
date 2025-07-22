@@ -50,7 +50,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/auth/dang-nhap', {
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/dang-nhap`, {
                 input,
                 password
             }, {

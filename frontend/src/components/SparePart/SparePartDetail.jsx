@@ -12,7 +12,7 @@ function SparePartDetail({ getTenPhuTung }) {
     useEffect(() => {
         const fetchSparePart = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/v1/phu-tung/${slug}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/phu-tung/${slug}`);
                 setSparePart(response.data);
                 if (getTenPhuTung) {
                     getTenPhuTung(response.data.tenPhuTung)

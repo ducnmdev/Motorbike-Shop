@@ -14,7 +14,7 @@ function Dashboard() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/v1/admin/dashboard', {
+                const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/dashboard`, {
                     withCredentials: true,
                 });
                 setData(res.data)

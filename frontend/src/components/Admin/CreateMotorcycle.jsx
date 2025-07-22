@@ -219,7 +219,7 @@ function CreateMotorcycle() {
 
         if (isEdit) {
             await axios.patch(
-                `http://localhost:5000/api/v1/admin/update-motorcycle/${item._id}`,
+                `${process.env.REACT_APP_API_BASE_URL}/admin/update-motorcycle/${item._id}`,
                 formData,
                 {
                     headers: {
@@ -231,7 +231,7 @@ function CreateMotorcycle() {
         } else {
             try {
                 // const response = 
-                await axios.post('http://localhost:5000/api/v1/xe-may/create', formData, {
+                await axios.post(`${process.env.REACT_APP_API_BASE_URL}/xe-may/create`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

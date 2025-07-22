@@ -11,7 +11,7 @@ function ManageOrder() {
 
   const fetchData = async (type) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/v1/admin/orders?type=${type}`, {
+      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/admin/orders?type=${type}`, {
         withCredentials: true
       })
       setData(res.data)

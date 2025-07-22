@@ -11,7 +11,7 @@ function OrderDetail() {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/v1/order/motorcycle/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/motorcycle/${id}`);
                 // console.log(response.data)
                 setOrder(response.data)
             } catch (error) {
@@ -35,7 +35,7 @@ function OrderDetail() {
     };
 
     const handleDownloadInvoice = () => {
-        window.open(`http://localhost:5000/api/v1/order/${order._id}/invoice`, "_blank");
+        window.open(`${process.env.REACT_APP_API_BASE_URL}/order/${order._id}/invoice`, "_blank");
     };
 
     if (!order) return;

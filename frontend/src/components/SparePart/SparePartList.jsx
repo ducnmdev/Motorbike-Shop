@@ -12,7 +12,7 @@ function SpareParts() {
         const fetchSpareParts = async () => {
             try {
                 // console.log({ type })
-                const response = await axios.get('http://localhost:5000/api/v1/phu-tung/');
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/phu-tung/`);
                 setData(response.data);
                 return response.data;
             } catch (error) {

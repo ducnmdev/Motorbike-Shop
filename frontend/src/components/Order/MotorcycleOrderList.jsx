@@ -9,7 +9,7 @@ function MotorcycleOrderList() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/v1/order/my-orders', {
+        const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/order/my-orders`, {
           withCredentials: true,
         });
         setOrders(res.data);

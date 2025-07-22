@@ -26,7 +26,7 @@ function NavBar() {
         const fetchData = async () => {
             try {
                 const response =
-                    await axios.get('http://localhost:5000/api/v1/user/account/profile', {
+                    await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user/account/profile`, {
                         withCredentials: true // bắt buộc
                     });
                 setUser(response.data.user);
@@ -58,7 +58,7 @@ function NavBar() {
 
     const handleSignout = async () => {
         try {
-            await axios.post('http://localhost:5000/api/v1/auth/signout', {}, {
+            await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/signout`, {}, {
                 withCredentials: true,
             });
             navigate('/');

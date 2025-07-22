@@ -28,4 +28,6 @@ app.use(express.json()); // middleware xử lý body là json
 // Routes init
 route(app);
 
-app.listen(process.env.PORT, () => console.log(`App listening at http://localhost:${process.env.PORT}`));
+app.listen(process.env.PORT, () =>
+   console.log(`Server is running on port ${process.env.PORT}`)
+);

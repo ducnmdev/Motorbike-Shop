@@ -19,7 +19,7 @@ function AccountSettings() {
         }
 
         try {
-            await axios.patch('http://localhost:5000/api/v1/user/account/settings',
+            await axios.patch(`${process.env.REACT_APP_API_BASE_URL}/user/account/settings`,
                 {
                     password,
                     newPassword

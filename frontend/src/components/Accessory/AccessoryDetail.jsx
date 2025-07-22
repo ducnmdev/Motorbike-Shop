@@ -11,7 +11,7 @@ function AccessoryDetail({ getTenPhuKien }) {
     useEffect(() => {
         const fetchAccessory = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/v1/phu-kien/${slug}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/phu-kien/${slug}`);
                 setAccessory(response.data);
                 if (getTenPhuKien) {
                     getTenPhuKien(response.data.tenPhuKien);

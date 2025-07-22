@@ -19,7 +19,7 @@ function Motorcycles() {
   useEffect(() => {
     const fetchMotorcycles = async (type) => {
       try {
-        const response = await axios.get('http://localhost:5000/api/v1/xe-may/', { params: { type } });
+        const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/xe-may/`, { params: { type } });
         setData(response.data);
       } catch (error) {
         console.error("Error fetching motorcycles:", error);

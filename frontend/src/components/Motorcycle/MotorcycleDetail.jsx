@@ -40,7 +40,7 @@ function MotorcycleDetail({ getTenXe }) {
         const fetchData = async () => {
             try {
                 const response =
-                    await axios.get('http://localhost:5000/api/v1/user/account/profile', {
+                    await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user/account/profile`, {
                         withCredentials: true // bắt buộc
                     });
                 setOrder(prev => ({
@@ -88,7 +88,7 @@ function MotorcycleDetail({ getTenXe }) {
     useEffect(() => {
         const fetchMotorcycle = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/api/v1/xe-may/${slug}`);
+                const response = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/xe-may/${slug}`);
                 setMotorcycle(response.data);
                 setOrder(prev => ({
                     ...prev,

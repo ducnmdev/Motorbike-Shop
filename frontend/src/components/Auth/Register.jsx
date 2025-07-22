@@ -90,7 +90,7 @@ function Register() {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/auth/dang-ky', userData);
+            const response = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth/dang-ky`, userData);
             console.log(response.data);
             alert("Đăng ký thành công!")
             navigate('/dang-nhap')
