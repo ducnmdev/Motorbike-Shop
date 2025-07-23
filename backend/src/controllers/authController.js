@@ -17,8 +17,8 @@ class AuthController {
     signout(req, res, next) {
         res.clearCookie('jwt', {
             httpOnly: true,
-            secure: process.env.NODE_ENV !== 'development',
-            sameSite: 'Lax',
+            secure: true,
+            sameSite: 'None',
         });
         res.status(200).json({ message: 'Đăng xuất thành công' });
     }

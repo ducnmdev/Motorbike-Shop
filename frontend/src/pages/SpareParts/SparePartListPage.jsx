@@ -7,7 +7,7 @@ function SparePartPage() {
   return (
     <>
       <Helmet>
-        <title>Danh sách phụ tùng</title>
+        <title>Phụ tùng</title>
         <meta name="description" content="" />
       </Helmet>
       <div>

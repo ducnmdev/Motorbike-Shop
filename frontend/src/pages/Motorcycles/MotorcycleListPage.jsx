@@ -23,7 +23,7 @@ function MotorcyclesPage() {
   return (
     <>
       <Helmet>
-        <title>Danh sách xe máy</title>
+        <title>Xe máy</title>
         <meta name="description" content="" />
       </Helmet>
       <Banner />
